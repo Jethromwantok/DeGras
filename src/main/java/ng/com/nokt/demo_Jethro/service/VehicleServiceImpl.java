@@ -5,6 +5,7 @@ import ng.com.nokt.demo_Jethro.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class VehicleServiceImpl implements VehicleService{
 
@@ -22,8 +23,18 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public Vehicle updateVehicle(Long id, Vehicle vehicle) {
+        Optional<Vehicle> optionalVehicle = this.vehicleRepository.findById(id);
+        if (optionalVehicle.isPresent()){
+            Vehicle newVehicle = optionalVehicle.get();
+            newVehicle.setName(vehicle.getName());
+            newVehicle.setItems(vehicle.getItems());
 
-        return null;
+            vehicleRepository.save(newVehicle);
+            return newVehicle;
+
+        }else {
+            throw new RuntimeException("Record Not Found!");
+        }
     }
 
     @Override
@@ -38,6 +49,7 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public void deleteVehicle(Long id) {
+        vehicleRepository.deleteById(id);
 
     }
 }
