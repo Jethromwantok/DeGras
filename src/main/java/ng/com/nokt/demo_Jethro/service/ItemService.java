@@ -1,8 +1,10 @@
 package ng.com.nokt.demo_Jethro.service;
 
 import ng.com.nokt.demo_Jethro.entities.Item;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface ItemService {
     Item createItem(Item item);

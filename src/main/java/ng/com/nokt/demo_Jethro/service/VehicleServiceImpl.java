@@ -3,10 +3,12 @@ package ng.com.nokt.demo_Jethro.service;
 import ng.com.nokt.demo_Jethro.entities.Vehicle;
 import ng.com.nokt.demo_Jethro.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class VehicleServiceImpl implements VehicleService{
 
     //@Autowired alternate for the constructor

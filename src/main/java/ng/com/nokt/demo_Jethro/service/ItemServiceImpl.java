@@ -2,9 +2,11 @@ package ng.com.nokt.demo_Jethro.service;
 
 import ng.com.nokt.demo_Jethro.entities.Item;
 import ng.com.nokt.demo_Jethro.repository.ItemRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
