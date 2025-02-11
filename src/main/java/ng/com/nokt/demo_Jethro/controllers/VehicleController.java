@@ -1,6 +1,7 @@
 package ng.com.nokt.demo_Jethro.controllers;
 
 
+import ng.com.nokt.demo_Jethro.entities.Item;
 import ng.com.nokt.demo_Jethro.entities.Vehicle;
 import ng.com.nokt.demo_Jethro.service.ItemService;
 import ng.com.nokt.demo_Jethro.service.VehicleService;
@@ -30,4 +31,15 @@ public class VehicleController {
         Vehicle vehicle = vehicleService.getVehicleByPlateNumber(plateNumber);
         return ResponseEntity.ok(vehicle);
     }
+
+    @PostMapping("add-item-to-vehicle/{plateNumber}/item/{itemId}")
+    ResponseEntity<Vehicle> addItemToVehicle(@PathVariable String plateNumber, @PathVariable Long itemId){
+        Item item = itemService.getItemById(itemId);
+        Vehicle vehicle = vehicleService.getVehicleByPlateNumber(plateNumber);
+        vehicle.getItems().add(item);
+        vehicleService.createVehicle(vehicle);
+        return ResponseEntity.ok(vehicle);
+        
+    }
+
 }
